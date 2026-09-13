@@ -5,7 +5,7 @@ import { PROJECTS } from '@/lib/portfolioData';
 import type { Project } from '@/lib/portfolioData';
 import { ProjectModal } from './ProjectModal';
 import { GithubIcon } from './Icons';
-import { ExternalLink, Sparkles, ArrowUpRight, Layers } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 
 export const ProjectsSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -13,10 +13,9 @@ export const ProjectsSection: React.FC = () => {
 
   const filterCategories = [
     { id: 'all', label: 'All Projects' },
-    { id: 'ai-hackathon', label: 'AI & Hackathons' },
-    { id: 'full-stack', label: 'Full-Stack' },
-    { id: 'e-commerce', label: 'E-Commerce' },
     { id: 'client-work', label: 'Client Work' },
+    { id: 'ai-hackathon', label: 'AI & Hackathons' },
+    { id: 'e-commerce', label: 'E-Commerce' },
     { id: 'internship', label: 'Internships' },
   ];
 
@@ -24,38 +23,40 @@ export const ProjectsSection: React.FC = () => {
     ? PROJECTS
     : PROJECTS.filter((p) => p.category === activeCategory);
 
+  // Helper to get clean display URL for browser frame
+  const getDisplayUrl = (url: string) => {
+    return url.replace('https://', '').replace(/\/$/, '');
+  };
+
   return (
-    <section id="projects" className="py-28 relative bg-[#070A10]">
-      {/* Background Orbs */}
-      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="projects" className="py-24 relative scroll-mt-20">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 w-full space-y-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>GitHub & Live Portfolio Showcase</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-white/[0.08]">
+          <div className="space-y-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              PORTFOLIO SHOWCASE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Featured Projects & Client Work
+            </h2>
           </div>
-
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
-            Featured <span className="text-gradient-cyan">Projects & Deployments</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300">
-            Explore live production web applications, hackathon AI tools, and full-stack software repositories built by Monesh.
+          <p className="text-sm text-slate-400 max-w-md">
+            Production web platforms built for real clients, hackathon-tested voice AI tools, and responsive e-commerce storefronts.
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
+        <div className="flex flex-wrap items-center gap-2">
           {filterCategories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer ${
                 activeCategory === cat.id
-                  ? 'bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white shadow-xl shadow-cyan-500/30 scale-105'
-                  : 'bg-slate-900/80 border border-slate-800 text-slate-300 hover:bg-slate-800 hover:text-white'
+                  ? 'bg-indigo-600 text-white font-semibold shadow-md border border-indigo-400/40'
+                  : 'bg-[#0d1527] border border-white/[0.08] text-slate-400 hover:text-white hover:border-indigo-500/30'
               }`}
             >
               {cat.label}
@@ -64,76 +65,106 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Bento Grid Projects */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <div
+            <article
               key={project.id}
-              className="group glass-panel rounded-3xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between"
+              className="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group relative border border-white/[0.08] hover:border-indigo-500/40 transition-all duration-300"
             >
-              {/* Top Image & Glow Overlay */}
-              <div className="relative h-56 w-full overflow-hidden bg-slate-950">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-[#090D16]/40 to-transparent" />
+              {/* Browser Mockup Window */}
+              <div
+                onClick={() => setSelectedProject(project)}
+                className="w-full bg-[#080c17] border-b border-white/[0.08] overflow-hidden cursor-pointer"
+                title="Click to view case study"
+              >
+                {/* Browser Chrome Header */}
+                <div className="px-3 py-2 bg-[#0c1324] flex items-center justify-between gap-2 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  </div>
 
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3.5 py-1 rounded-full text-[11px] font-mono font-bold bg-[#070A10]/90 text-cyan-300 border border-slate-700/80 backdrop-blur-md">
-                    {project.categoryLabel}
-                  </span>
+                  {/* Browser URL bar pill */}
+                  <div className="flex-1 max-w-[200px] px-2 py-0.5 rounded bg-[#070a14] border border-white/[0.06] text-[10px] font-mono text-slate-400 truncate text-center">
+                    {project.liveUrl ? getDisplayUrl(project.liveUrl) : 'localhost:3000'}
+                  </div>
+
+                  {project.liveUrl && (
+                    <span className="flex items-center gap-1 text-[9px] font-mono text-emerald-400 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      LIVE
+                    </span>
+                  )}
                 </div>
 
-                {/* Live Indicator */}
-                {project.liveUrl && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/50 text-emerald-400 text-[11px] font-mono font-bold shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Live</span>
+                {/* Screenshot Image */}
+                <div className="relative h-52 w-full overflow-hidden bg-[#070a14]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  {/* Category Pill */}
+                  <div className="absolute top-2 left-2">
+                    <span className="px-2.5 py-0.5 rounded-md text-[10px] font-medium bg-[#0a0f1d]/90 text-indigo-300 border border-white/[0.1] backdrop-blur-md">
+                      {project.categoryLabel}
+                    </span>
                   </div>
-                )}
+                </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-7 flex-1 flex flex-col justify-between space-y-5">
-                <div className="space-y-2.5">
-                  <h3 className="text-xl font-extrabold text-white group-hover:text-cyan-400 transition-colors">
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <h3
+                    onClick={() => setSelectedProject(project)}
+                    className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors cursor-pointer"
+                  >
                     {project.title}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-400">
+                  <p className="text-xs text-slate-400 font-normal">
                     {project.subtitle}
                   </p>
-                  <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
+                {/* Verified Highlight Stat */}
+                {project.stats && project.stats.length > 0 && (
+                  <div className="p-2.5 rounded-lg bg-[#070a14] border border-white/[0.06] flex items-center justify-between text-xs">
+                    <span className="text-slate-400">{project.stats[0].label}:</span>
+                    <span className="font-semibold text-emerald-400 font-mono">{project.stats[0].value}</span>
+                  </div>
+                )}
+
                 {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {project.techStack.slice(0, 4).map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-300 font-medium"
+                      className="px-2 py-0.5 rounded bg-[#070a14] border border-white/[0.06] text-[10px] font-mono text-slate-300"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.techStack.length > 4 && (
-                    <span className="px-2 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-400">
+                    <span className="px-2 py-0.5 rounded bg-[#070a14] border border-white/[0.06] text-[10px] font-mono text-slate-500">
                       +{project.techStack.length - 4}
                     </span>
                   )}
                 </div>
 
                 {/* Card Action Footer */}
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between gap-3">
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors"
+                    className="text-xs font-medium text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors cursor-pointer"
                   >
-                    <span>Details & Features</span>
-                    <ArrowUpRight className="w-4 h-4" />
+                    <span>View Case Study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
 
                   <div className="flex items-center gap-2">
@@ -142,10 +173,11 @@ export const ProjectsSection: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
-                        title="Source Code"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 rounded-lg bg-[#070a14] border border-white/[0.08] text-slate-300 hover:text-white hover:border-indigo-500/40 transition-colors"
+                        title="View Source on GitHub"
                       >
-                        <GithubIcon className="w-4 h-4" />
+                        <GithubIcon className="w-3.5 h-3.5" />
                       </a>
                     )}
                     {project.liveUrl && (
@@ -153,16 +185,17 @@ export const ProjectsSection: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-900/80 transition-colors"
-                        title="Live Demo"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 rounded-lg bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-900 transition-colors"
+                        title="Open Live Website"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     )}
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -175,3 +208,4 @@ export const ProjectsSection: React.FC = () => {
     </section>
   );
 };
+

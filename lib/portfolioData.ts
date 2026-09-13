@@ -39,7 +39,7 @@ export const MONESH_BIO = {
   role: "Full-Stack & AI Software Engineer",
   tagline: "Building high-performance Next.js web applications, AI tools & sleek digital products.",
   location: "Tamil Nadu, India",
-  email: "kamaleshmonesh908@gmail.com",
+  email: "monesh1074@gmail.com",
   github: "https://github.com/monesh1074-hub",
   linkedin: "https://www.linkedin.com/in/monesh908",
   about: "Passionate Full-Stack Developer specializing in Next.js 14, React 18, TypeScript, Node.js, and AI voice integrations. Experienced in delivering client-grade production web platforms, hackathon-winning AI tools, and responsive e-commerce & analytics platforms.",
@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/VOICEBILL-hackthon",
     liveUrl: "https://voicebill-hackthon-six.vercel.app",
     featured: true,
-    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/voicebill.png",
     features: [
       "Real-time voice-to-invoice processing for fast merchant checkouts",
       "Dynamic multi-item price lookup & automated tax calculations",
@@ -74,8 +74,8 @@ export const PROJECTS: Project[] = [
     ],
     highlights: ["Hackathon Project", "AI Voice Tech", "Next.js 14 & TypeScript", "Live Vercel Deployment"],
     stats: [
-      { label: "Recognition Speed", value: "< 1.5s" },
-      { label: "Accuracy", value: "98%" }
+      { label: "Speech Engine", value: "Web Speech API" },
+      { label: "Framework", value: "Next.js 14" }
     ]
   },
   {
@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/aaru-luxury-fashion",
     liveUrl: "https://aaru-luxury-fashion.vercel.app",
     featured: true,
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/aaru.png",
     features: [
       "Editorial luxury typography & glassmorphic UI design system",
       "Interactive product collection filter by price, style & availability",
@@ -100,8 +100,8 @@ export const PROJECTS: Project[] = [
     ],
     highlights: ["Luxury UI/UX", "TypeScript & React", "E-Commerce State", "Deployed on Vercel"],
     stats: [
-      { label: "Lighthouse Performance", value: "98/100" },
-      { label: "Product Types", value: "50+" }
+      { label: "Design System", value: "Custom Tailwind" },
+      { label: "Responsive", value: "Mobile to 4K" }
     ]
   },
   {
@@ -116,7 +116,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/murfalcon-ai",
     liveUrl: "https://murfalcon-ai-3.onrender.com/",
     featured: true,
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/murfalcon-ai.png",
     features: [
       "Conversational AI workspace with real-time prompt streaming",
       "Custom prompt library & category presets for coding & writing",
@@ -126,8 +126,8 @@ export const PROJECTS: Project[] = [
     ],
     highlights: ["Full-Stack AI App", "Node.js & Express", "Render Deployment", "Prompt Automation"],
     stats: [
-      { label: "Backend Latency", value: "< 200ms" },
-      { label: "Deployment", value: "Render Cloud" }
+      { label: "Backend", value: "Node.js / Express" },
+      { label: "Cloud Host", value: "Render" }
     ]
   },
   {
@@ -142,7 +142,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/client1",
     liveUrl: "https://client1-beta-mauve.vercel.app",
     featured: true,
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/kalai-decorators.png",
     features: [
       "Multi-category event gallery (Political, Cinema Sets, Weddings, Temple Festivals)",
       "High-resolution 100+ photo album modal viewer with keyboard navigation",
@@ -152,8 +152,8 @@ export const PROJECTS: Project[] = [
     ],
     highlights: ["Real Client Project", "Kollywood Cinema Showcase", "Next.js 14", "Vercel Deployed"],
     stats: [
-      { label: "Gallery Photos", value: "100+" },
-      { label: "Client History", value: "27 Years" }
+      { label: "Client Heritage", value: "27 Years" },
+      { label: "Media Showcase", value: "100+ Albums" }
     ]
   },
   {
@@ -168,7 +168,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/Airbnb-clone-internship",
     liveUrl: "https://airbnb-clone-internship.vercel.app/",
     featured: false,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/airbnb.png",
     features: [
       "Property listing card layout with pricing & rating indicators",
       "Interactive location search & category filter bar",
@@ -194,7 +194,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/monesh1074-hub/Dashboard-Internship",
     liveUrl: "https://dashboard-beta-taupe-24.vercel.app",
     featured: false,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    image: "/projects/dashboard.png",
     features: [
       "Interactive data visualizations & metric charts",
       "KPI summary cards with trend percentage indicators",

@@ -2,120 +2,115 @@
 
 import React from 'react';
 import { MONESH_BIO } from '@/lib/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
 import { InteractiveTerminal } from './InteractiveTerminal';
-import { ArrowRight, Star, Clock, Calendar, Play, Sparkles } from 'lucide-react';
+import { ArrowDown, Terminal, ShieldCheck, Activity, Zap, Layers, Sparkles } from 'lucide-react';
+import { GithubIcon } from './Icons';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-between z-10">
-      {/* 1. CINEMATIC BACKGROUND VIDEO */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-45"
-      >
-        <source
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_094145_4a271a6c-3869-4f1c-8aa7-aeb0cb227994.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* 2. BOTTOM BLUR OVERLAY */}
-      <div className="bottom-blur-overlay" />
-
-      {/* 3. HERO MAIN CONTENT */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto w-full">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            {/* Status Pill */}
-            <div
-              className="animate-blur-fade-up inline-flex items-center gap-2.5 px-4 py-2 rounded-full liquid-glass shadow-lg"
-              style={{ animationDelay: '0ms' }}
-            >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
-              </span>
-              <span className="text-xs font-mono font-bold tracking-wide uppercase text-cyan-300">
-                Available for Full-Stack Roles & Projects
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 z-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 w-full space-y-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Hero Narrative */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0d1527] border border-white/[0.08] shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="text-xs font-mono text-slate-300">
+                Full-Stack Developer • Tamil Nadu, India
               </span>
             </div>
 
-            {/* Title */}
-            <div className="space-y-4">
-              <h1
-                className="animate-blur-fade-up text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08]"
-                style={{ animationDelay: '400ms' }}
-              >
-                Hi, I'm <span className="text-gradient-cyan">{MONESH_BIO.name}</span> 👋
-                <br />
-                <span className="text-3xl sm:text-5xl lg:text-6xl font-bold text-slate-100">
-                  Step Through. Work Smarter.
-                </span>
-              </h1>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
+              Building modern web applications &{' '}
+              <span className="text-gradient-indigo">practical AI tools</span>.
+            </h1>
 
-              {/* Subtitle */}
-              <p
-                className="animate-blur-fade-up text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed"
-                style={{ animationDelay: '500ms' }}
-              >
-                A voyage through forgotten realms, where past and future intertwine. Building Next.js 14 web platforms, AI voice platforms, and high-performance digital products.
-              </p>
-            </div>
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
+              Hi, I'm <strong className="text-white font-semibold">Monesh</strong>. I build fast, responsive web applications using Next.js, React, and TypeScript. From building a voice-driven billing platform for local merchants to digitizing a 27-year veteran event staging company, I love turning ideas into clean, functional software.
+            </p>
 
-            {/* Metadata Row */}
-            <div
-              className="animate-blur-fade-up flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-slate-200"
-              style={{ animationDelay: '300ms' }}
-            >
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                <span className="font-semibold text-white">8.7/10 Code Quality</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-slate-300">
-                <Clock className="w-4 h-4 text-cyan-400" />
-                <span>6+ Live Deployments</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-slate-300">
-                <Calendar className="w-4 h-4 text-purple-400" />
-                <span>April, 2026</span>
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-              {/* Watch Projects CTA */}
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <a
                 href="#projects"
-                className="animate-blur-fade-up inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-white text-black font-bold text-base hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:scale-105 cursor-pointer"
-                style={{ animationDelay: '600ms' }}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-md active:scale-[0.98] transition-all cursor-pointer"
               >
-                <Play className="w-5 h-5 fill-black text-black" />
-                <span>Watch Projects</span>
+                <span>View My Work</span>
+                <ArrowDown className="w-4 h-4 text-indigo-200" />
               </a>
 
-              {/* Learn More Liquid Glass CTA */}
               <a
-                href="#architecture"
-                className="animate-blur-fade-up inline-flex items-center gap-2.5 px-7 py-4 rounded-full liquid-glass text-white font-bold text-base hover:bg-white/10 transition-all duration-300 cursor-pointer"
-                style={{ animationDelay: '700ms' }}
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#0d1527] hover:bg-[#131c31] border border-white/[0.08] hover:border-indigo-500/40 text-slate-200 hover:text-white text-xs font-medium transition-all active:scale-[0.98] cursor-pointer"
               >
-                <span>Interactive Stack</span>
-                <ArrowRight className="w-5 h-5 text-cyan-400" />
+                <span>Contact Me</span>
+              </a>
+
+              <a
+                href={MONESH_BIO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-xl bg-[#0d1527] hover:bg-[#131c31] border border-white/[0.08] hover:border-indigo-500/40 text-slate-300 hover:text-white transition-all"
+                title="GitHub Repositories"
+              >
+                <GithubIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Right Column: Terminal Widget */}
+          {/* Right Column: Workstation Widget */}
           <div className="lg:col-span-5">
             <InteractiveTerminal />
+          </div>
+        </div>
+
+        {/* 4-Metric Highlights Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+          {/* Highlight 1 */}
+          <div className="stitch-card p-5 rounded-2xl flex flex-col justify-between space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono text-slate-400">PROJECTS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            </div>
+            <div className="font-mono text-2xl sm:text-3xl font-bold text-white">5+ Live</div>
+            <p className="text-xs text-slate-400">Deployed on Vercel & Render</p>
+          </div>
+
+          {/* Highlight 2 */}
+          <div className="stitch-card p-5 rounded-2xl flex flex-col justify-between space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono text-slate-400">STACK</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+            </div>
+            <div className="font-mono text-2xl sm:text-3xl font-bold text-indigo-300">Next.js 14</div>
+            <p className="text-xs text-slate-400">React 18 & TypeScript</p>
+          </div>
+
+          {/* Highlight 3 */}
+          <div className="stitch-card p-5 rounded-2xl flex flex-col justify-between space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono text-slate-400">AI PROTOTYPE</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            </div>
+            <div className="font-mono text-2xl sm:text-3xl font-bold text-emerald-400">VOICEBILL</div>
+            <p className="text-xs text-slate-400">Speech-to-Invoice System</p>
+          </div>
+
+          {/* Highlight 4 */}
+          <div className="stitch-card p-5 rounded-2xl flex flex-col justify-between space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono text-slate-400">CLIENT WORK</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+            </div>
+            <div className="font-mono text-2xl sm:text-3xl font-bold text-white">27-Yr Firm</div>
+            <p className="text-xs text-slate-400">Kalai Decorators Platform</p>
           </div>
         </div>
       </div>
     </section>
   );
 };
+

@@ -3,100 +3,102 @@
 import React from 'react';
 import { SKILL_CATEGORIES } from '@/lib/portfolioData';
 import { Globe3D } from './Globe3D';
-import { Code2, Cpu, Cloud, Terminal, Layers, Sparkles } from 'lucide-react';
+import { Code2, Cpu, Cloud, Terminal, CheckCircle2, Layers, Sparkles } from 'lucide-react';
 
 export const SkillsSection: React.FC = () => {
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case 'Layout':
-        return <Code2 className="w-6 h-6 text-cyan-400" />;
+        return <Code2 className="w-5 h-5 text-indigo-400" />;
       case 'Cpu':
-        return <Cpu className="w-6 h-6 text-purple-400" />;
+        return <Cpu className="w-5 h-5 text-emerald-400" />;
       case 'Cloud':
-        return <Cloud className="w-6 h-6 text-emerald-400" />;
+        return <Cloud className="w-5 h-5 text-sky-400" />;
       default:
-        return <Layers className="w-6 h-6 text-indigo-400" />;
+        return <Layers className="w-5 h-5 text-purple-400" />;
     }
   };
 
   return (
-    <section id="skills" className="py-28 relative bg-[#060912]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="skills" className="py-24 relative scroll-mt-20">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 w-full space-y-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono font-bold">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>Technical Proficiency & Engineering Mastery</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-white/[0.08]">
+          <div className="space-y-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              SKILLS & CAPABILITIES
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Technical Stack & Tools
+            </h2>
           </div>
-
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
-            Core <span className="text-gradient-cyan">Tech Stack & Competencies</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300">
-            A comprehensive overview of tools, frameworks, and deployment environments utilized across full-stack and AI projects.
+          <p className="text-sm text-slate-400 max-w-md">
+            The languages, frameworks, and deployment environments I use to build production web applications and tools.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Skill Categories (Col 8) */}
-          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-6">
-            {SKILL_CATEGORIES.map((category, idx) => (
-              <div
-                key={idx}
-                className="glass-panel p-7 rounded-3xl border border-slate-800 space-y-6 hover:border-cyan-500/40 transition-all duration-300 shadow-xl"
-              >
+        {/* Skill Category Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {SKILL_CATEGORIES.map((category, idx) => (
+            <div
+              key={idx}
+              className="stitch-card p-6 rounded-2xl space-y-5 border border-white/[0.08] hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div className="space-y-4">
                 {/* Category Header */}
-                <div className="flex items-center gap-4 pb-4 border-b border-slate-800/80">
-                  <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 shadow-inner">
+                <div className="flex items-center gap-3 pb-3 border-b border-white/[0.06]">
+                  <div className="p-2.5 rounded-xl bg-[#070a14] border border-white/[0.08]">
                     {getCategoryIcon(category.icon)}
                   </div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-base font-bold text-white tracking-tight">
                     {category.title}
                   </h3>
                 </div>
 
-                {/* Skill Bars */}
-                <div className="space-y-4">
+                {/* Skill Pills */}
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, sIdx) => (
-                    <div key={sIdx} className="space-y-1.5">
-                      <div className="flex justify-between items-center text-xs sm:text-sm font-medium">
-                        <span className="text-slate-200 flex items-center gap-2">
-                          {skill.highlight && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00F0FF]" />
-                          )}
-                          {skill.name}
-                        </span>
-                        <span className="text-xs font-mono text-cyan-400 font-bold">
-                          {skill.level}%
-                        </span>
-                      </div>
-
-                      {/* Progress Bar */}
-                      <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 transition-all duration-1000"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
-                    </div>
+                    <span
+                      key={sIdx}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors flex items-center gap-1.5 ${
+                        skill.highlight
+                          ? 'bg-indigo-950/60 text-indigo-200 border border-indigo-500/30'
+                          : 'bg-[#070a14] text-slate-300 border border-white/[0.06]'
+                      }`}
+                    >
+                      {skill.highlight && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      )}
+                      <span>{skill.name}</span>
+                    </span>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* 3D Holographic Sphere Widget (Col 4) */}
-          <div className="lg:col-span-4 glass-panel p-8 rounded-3xl border border-slate-800 text-center space-y-4 flex flex-col items-center justify-center shadow-2xl">
-            <Globe3D />
-            <div className="space-y-1">
-              <h4 className="text-lg font-bold text-white">Full-Stack & Cloud Architecture</h4>
-              <p className="text-xs text-slate-400">
-                Deploying production Next.js & Node.js apps globally on Vercel Edge & Render.
-              </p>
+              <div className="pt-3 border-t border-white/[0.06] text-[11px] font-mono text-slate-500 flex items-center justify-between">
+                <span>{category.skills.length} core technologies</span>
+                <span>Active Stack</span>
+              </div>
             </div>
+          ))}
+        </div>
+
+        {/* Current Workflow / Setup Banner */}
+        <div className="stitch-card p-6 rounded-2xl border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <span className="text-[11px] font-mono text-indigo-400 font-semibold">DAILY WORKFLOW & TOOLCHAIN</span>
+            <p className="text-xs sm:text-sm text-slate-300">
+              VS Code • Turbopack • Git Version Control • Vercel Edge • Tailwind CSS • Postman API Testing
+            </p>
+          </div>
+          <div className="px-3.5 py-1.5 rounded-xl bg-[#070a14] border border-white/[0.08] text-xs font-mono text-emerald-400 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span>Next.js 14 App Router Ready</span>
           </div>
         </div>
       </div>
     </section>
   );
 };
+

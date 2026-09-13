@@ -71,11 +71,13 @@ export const Globe3D: React.FC = () => {
         ctx.arc(px, py, Math.max(1, 2 * scale), 0, Math.PI * 2);
         
         if (p.z > 0) {
-          ctx.fillStyle = '#00F0FF';
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = '#00F0FF';
+          ctx.fillStyle = '#10b981';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#10b981';
         } else {
-          ctx.fillStyle = '#6366F1';
+          ctx.fillStyle = '#6366f1';
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = '#6366f1';
         }
 
         ctx.fill();
@@ -91,13 +93,14 @@ export const Globe3D: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex items-center justify-center p-4">
-      {/* Outer Glow Halo */}
-      <div className="absolute w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
-      <canvas ref={canvasRef} className="block relative z-10 animate-pulse-slow" />
-      <div className="absolute text-[11px] font-mono font-semibold uppercase text-cyan-400/80 tracking-widest bottom-2">
-        • Live Deployed Globe Nodes •
+    <div className="relative flex items-center justify-center p-2">
+      {/* Outer Restrained Glow Halo */}
+      <div className="absolute w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
+      <canvas ref={canvasRef} className="block relative z-10" />
+      <div className="absolute text-[10px] font-mono font-semibold uppercase text-emerald-400/80 tracking-widest bottom-1">
+        • Global Cluster Active •
       </div>
     </div>
   );
 };
+

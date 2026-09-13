@@ -1,13 +1,10 @@
 'use client';
 
 import React from 'react';
-import { CustomCursor } from '@/components/CustomCursor';
-import { ParticleCanvasBackground } from '@/components/ParticleCanvasBackground';
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
-import { LiveActivityFeed } from '@/components/LiveActivityFeed';
 import { ProjectsSection } from '@/components/ProjectsSection';
-import { ProjectArchitectGenerator } from '@/components/ProjectArchitectGenerator';
+import { AboutPhilosophySection } from '@/components/AboutPhilosophySection';
 import { SkillsSection } from '@/components/SkillsSection';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
 import { ContactSection } from '@/components/ContactSection';
@@ -15,25 +12,13 @@ import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#070A10] text-slate-100 overflow-x-hidden relative selection:bg-cyan-500 selection:text-black">
-      {/* Custom Trailing Halo Cursor */}
-      <CustomCursor />
-
-      {/* Dynamic Animated Particle Canvas Background */}
-      <ParticleCanvasBackground />
-
+    <div className="min-h-screen bg-[#0a0f1d] text-slate-100 overflow-x-hidden relative selection:bg-indigo-500 selection:text-white">
       {/* Main Page Layout */}
       <Navbar />
-      <main className="relative z-10 space-y-12">
+      <main className="relative z-10 space-y-16">
         <HeroSection />
-
-        {/* Live Activity Ticker Row */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <LiveActivityFeed />
-        </div>
-
         <ProjectsSection />
-        <ProjectArchitectGenerator />
+        <AboutPhilosophySection />
         <SkillsSection />
         <ExperienceTimeline />
         <ContactSection />

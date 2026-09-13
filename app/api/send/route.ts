@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resendKey = process.env.RESEND_API_KEY || 're_gRq3DKfQ_Bwd7CvMTPSMyU5TxFkfmfgpH';
-const resend = new Resend(resendKey);
-
 export async function POST(request: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: 'RESEND_API_KEY environment variable is not set.' },
+        { status: 500 }
+      );
+    }
+    const resend = new Resend(apiKey);
+
     const body = await request.json();
     const { name, email, subject, message } = body;
 
@@ -17,7 +23,7 @@ export async function POST(request: Request) {
     }
 
     // Send email using Resend SDK
-    const recipientEmail = process.env.OWNER_EMAIL || 'kamaleshmonesh908@gmail.com';
+    const recipientEmail = process.env.OWNER_EMAIL || 'monesh1074@gmail.com';
 
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
